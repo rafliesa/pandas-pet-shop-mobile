@@ -79,7 +79,7 @@ class Button extends StatelessWidget {
           height: screenHeight * 0.2,
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   item.icon,
