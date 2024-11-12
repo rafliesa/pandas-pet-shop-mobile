@@ -53,3 +53,39 @@ Buat atribut baru dalam ItemHomepage yang menyimpan nilai dari warna. Lalu pada 
 
 #### Memunculkan Snackbar
 Pada class Button, saya menambahkan event handler hideCurrentSnackBar() dan showSnackBar(). Pada showSnackBar, saya menambahkan text dinamis "Text("Kamu telah menekan tombol ${item.name}!")", sehingga nama tombol menyesuaikan tombol yang sedang di tekan.
+
+# Tugas 8
+## 1. Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+Kegunaannya adalah untuk mendeklarasikan variabel yang konstan serta nilainya siap saat dicompile (tidak menunggu runtime seperti final).
+
+Keuntungan menggunakan const adalah peningkatan performa karena dibuat hanya satu kali, meskipun digunakan berkali-kali, serta tidak akan berubah pada runtime.
+
+Kita sebaiknya menggunakan const ketika valuenya tidak bergantung pada runtime melainkan sudah diketahui saat compile time. Dalam konteks UI development yang lebih spefisifik, const dapat digunakan ketika elemen UI tidak bergantung pada nilai dinamis atau input dari pengguna.
+
+## 2. Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+### Column
+Column menyusun widget secara vertikal, contoh implementasinya pada aplikasi ini adalah grup 2 tombol yang ditumpuk secara vertikal.
+
+### Row
+Row menyusun widget secara horizontal, contoh implementasinya pada aplikasi ini adalah 2 tombol yang disusun secara horizontal.
+
+## 3.Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+Saya hanya menggunakan TextFormField.
+
+Element input lain yang tidak saya gunakan ada:
+1. TextField
+2. RadioButton
+3. Checkbox
+4. Switch
+5. Dropdown
+6. Slider
+
+### 4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+Dengan menambahkan tema pada pada MaterialApp di kelas main.dart. Saya menambahkan color scheme yang akan digunakan sebagai dasar dalam membangun UI aplikasi secara keseluruhan.
+
+
+### 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Pada aplikasi ini, saya melakukannya dengan:
+1. button yang akan mengarahkan ke halaman lain.
+2. Drawer yang berisi berbagai halaman terutama yang sering diakses dengan user.

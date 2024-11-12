@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/widgets/left_drawer.dart';
+import 'package:myapp/screens/form.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -16,8 +18,9 @@ class MyHomePage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: const Color.fromARGB(255, 245, 222, 179),
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
+        drawer: const LeftDrawer(),
         body: Container(
             alignment: Alignment.center,
             padding: const EdgeInsetsDirectional.only(top: 20),
@@ -72,6 +75,13 @@ class Button extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+          if (item.name == "Tambah Produk") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => produkForm()),
+            );
+          }
+          ;
         },
         child: Container(
           padding: const EdgeInsets.all(12),
