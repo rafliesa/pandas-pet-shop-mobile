@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/menu.dart';
+import 'package:pandas_pet_shop_mobile/menu.dart';
+import 'package:pandas_pet_shop_mobile/screens/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +14,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return Provider(
+      create: (_) {
+      CookieRequest request = CookieRequest();
+      return request;
+    },
+    child:  MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -19,7 +27,8 @@ class MyApp extends StatelessWidget {
             secondary: Colors.deepOrange[400]),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: const LoginPage(),
+    ),
     );
   }
 }

@@ -89,3 +89,57 @@ Dengan menambahkan tema pada pada MaterialApp di kelas main.dart. Saya menambahk
 Pada aplikasi ini, saya melakukannya dengan:
 1. button yang akan mengarahkan ke halaman lain.
 2. Drawer yang berisi berbagai halaman terutama yang sering diakses dengan user.
+
+# Tugas 9
+
+### 1. Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+Untuk memudahkan proses serialiasasi serta menjaga konsistensi dari data. Ketika pembuatan model tidak dilakukan, tidak akan terjadi error. Namun, proses serialisasi akan menyulitkan serta akan ada kemungkinan ketidakonsistenan data.
+
+### 2. Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+Fungsi utama dari library http di Flutter adalah untuk memungkinkan aplikasi berinteraksi dengan server/backend. Interaksi ini menggunakan berbagai metode HTTP seperti:
+GET: Untuk mengambil data dari server.
+POST: Untuk mengirimkan data ke server, seperti mengunggah produk baru.
+PUT: Untuk memperbarui data di server.
+DELETE: Untuk menghapus data di server.
+Dengan menggunakan library ini, aplikasi dapat mengirimkan dan menerima data, serta berkomunikasi dengan backend secara efisien.
+
+### 3. Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+#### Fungsi
+1. Menyimpan dan Mengelola Cookie:<br> CookieRequest memungkinkan aplikasi untuk mengirimkan dan menerima cookie dengan setiap permintaan HTTP. Cookie ini sering digunakan untuk mengelola sesi pengguna, seperti token autentikasi atau sesi login.
+
+2. Autentikasi Sesi Pengguna:<br> Dalam aplikasi yang membutuhkan autentikasi berbasis sesi, seperti login, cookie digunakan untuk menyimpan informasi tentang status login pengguna. CookieRequest memastikan bahwa cookie ini dikirimkan dengan setiap permintaan untuk mengakses data atau melakukan operasi yang memerlukan otorisasi.
+
+3. Konsistensi dalam Permintaan HTTP:<br> CookieRequest memungkinkan kita untuk membuat permintaan HTTP dengan cookie yang sesuai, memastikan bahwa data yang dikirimkan atau diterima di setiap permintaan sesuai dengan konteks sesi pengguna.
+
+#### Mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter?
+Untuk memastikan bahwa semua permintaan HTTP menggunakan cookie yang sama, sehingga status autentikasi dan cookie konsisten di seluruh aplikasi.
+
+### 4. Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+1. Pengambilan input
+Pengguna memasukkan data melalui form atau field input di aplikasi Flutter, seperti teks, gambar, atau button.
+2. Validasi input (Opsional)
+Setelah pengguna mengisi form, aplikasi dapat memvalidasi input tersebut, memastikan bahwa data yang dimasukkan sesuai dengan kriteria.
+3. Pengiriman Data ke server
+Data yang telah diinput oleh pengguna kemudian dikirimkan ke server menggunakan HTTP request.
+4. Proses di backend
+Server menerima data dari aplikasi Flutter dan memprosesnya sesuai kebutuhan.
+5. Pengiriman Respons dari Server
+Setelah server memproses data, ia mengirimkan respons kembali ke aplikasi Flutter.
+6. Menangani Respons di Flutter
+Setelah menerima respons dari server, aplikasi Flutter akan memprosesnya.
+7. Menampilkan Data di UI Flutter
+Setelah mendapatkan data dari server, aplikasi Flutter akan memperbarui UI untuk menampilkan informasi yang baru diterima, seperti daftar produk atau detail produk baru.
+
+### 5. Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+Mekanisme autentikasi dimulai dengan proses login, di mana pengguna memasukkan username dan password di aplikasi Flutter. Data tersebut kemudian dikirimkan ke endpoint Django di /login, di mana Django akan memverifikasi kredensial pengguna. Jika kredensial valid, Django akan membuat session token yang kemudian dikirimkan kembali ke Flutter. Flutter akan menyimpan token ini di dalam CookieRequest, dan setelah itu, UI akan diperbarui untuk menampilkan home screen pengguna yang telah terautentikasi.
+
+Proses registrasi dimulai ketika pengguna mengisi form pendaftaran di aplikasi Flutter, dan data yang dimasukkan dikirim ke endpoint Django di /register. Django akan memvalidasi data dan, jika valid, membuat akun pengguna baru di database. Setelah itu, Django mengirimkan respons sukses atau error, dan jika pendaftaran berhasil, pengguna akan diarahkan kembali ke halaman login.
+
+Untuk logout, ketika pengguna menekan tombol logout, aplikasi Flutter mengirimkan request ke endpoint Django di /logout. Django akan menghapus sesi yang aktif, dan Flutter akan menghapus token dari CookieRequest. Setelah itu, pengguna akan diarahkan kembali ke halaman login.
+
+### 6. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+
+- Pertama, saya membuat aplikasi auth pada django saya, setelah itu saya membuat fungsi untuk menangani register, login, logout pada aplikasi flutter di berkas view.py. Setelah itu, saya melakukan routing untuk aplikasi serta fungsi yang telah saya buat.
+- Kedua, saya membuat tampilan untuk register dan login pada aplikasi flutter. Untuk mengintegrasikannya dengan fungsi yang telah saya buat, saya melakukan request langsung terhadap end point yang bersesuaian. Request tersebut juga berisi input dari aplikasi flutter.
+- Ketiga, saya membuat halaman yang menampilkan semua halaman dengan cara melakukan fetch data json. Lalu json tersebut diserialisasi menjadi objek dart. Lalu menampilkan datanya di UI. Untuk membuat halaman detailnya, saya membuat data yang sedang ditampilkan menjadi *clickable* yang jika diklik akan melakukan *passing* data yang bersesuaian lalu menampilkan detail produk dengan lebih jelas. 
+- Checklist filter halaman daftar item dengan hanya menampilkan item yang terasosiasi dengan pengguna yang login sudah dilakukan sebelumnya pada views django, sehingga data yang difetch hanya milik user yang sedang login
